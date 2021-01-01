@@ -1,10 +1,11 @@
 import pickle
 from pprint import pprint as pp
-from pkg_resources import resources_stream, resource_exists
+from pkg_resources import resource_stream, resource_exists, resource_filename
 from sys import exit
 from .utils import get_int_input
 
-character_file = resources_stream(__name__, 'character_tracker/character/characters.pkl')
+character_file = resource_stream(__name__, 'characters/characters.pkl')
+character_file_name = resource_filename(__name__, 'characters/characters.pkl')
 
 
 class Tracker(object):
@@ -15,7 +16,7 @@ class Tracker(object):
 
     def __init__(self):
         self.characters = {}
-        if resource_exists(__name__, 'character_tracker/character/characters.pkl'):
+        if resource_exists(__name__, 'characters/characters.pkl'):
             self.load_characters()
 
     def chose_character(self):
@@ -31,7 +32,8 @@ class Tracker(object):
                 print(f'"{choice}" is not a valid choice.')
 
     def save_characters(self):
-        pickle.dump(self.characters, character_file)
+        with open(character_file_name, 'wb') as f:
+            pickle.dump(self.characters, f)
 
     def load_characters(self):
         try:
