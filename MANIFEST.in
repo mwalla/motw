@@ -1,2 +1,2 @@
-include archetypes/*.json
-include characters/*.pkl
+include character_tracker/archetypes/*.json
+include character_tracker/characters/*.pkl
