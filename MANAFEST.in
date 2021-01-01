@@ -1,0 +1,2 @@
+include archetypes/*.json
+include characters/*.pkl
