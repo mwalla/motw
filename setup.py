@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 setuptools.setup(
     name='character_tracker',
-    version='0.4',
+    version='0.5',
     packages=['character_tracker'],
     url='https://github.com/llpk79/motw',
     license='MIT',
@@ -13,4 +13,7 @@ setuptools.setup(
     description='Tracker for Moster of the Week characters',
     long_description=long_description,
     include_package_data=True,
+    package_data={
+        "character_tracker": ["characters/*.pkl", "archetypes/*.json"]
+    }
 )
