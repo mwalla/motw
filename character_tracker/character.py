@@ -1,5 +1,6 @@
 import json
 import os
+from pkg_resources import resource_filename, resource_stream, resource_listdir, resource_string
 from pprint import pprint as pp
 from .move_msg import basic_moves
 from .roller import Roller
@@ -262,9 +263,7 @@ class Character(object):
         self.name = name
 
     def what_am_i(self):
-        path, _, file_names = next(
-            os.walk(os.path.join(os.getcwd(), "character_tracker", "archetypes"))
-        )
+        file_names = resource_listdir(__name__, 'archetypes')
         files = [file[:-5] for file in file_names]
         print(f'\nWhich player type are you?\nAvailable types:\n{" ".join(files)}\n')
         while True:
@@ -276,17 +275,17 @@ class Character(object):
                     f"Sorry, I don't know about {kind}.\nThe types of players I know about are {' '.join(files)}.\n"
                 )
         self.type = kind
-        with open(os.path.join(path, f"{kind}.json"), "r") as f:
-            string = f.read()
-            info = json.loads(string)
-            self.info = info
+        resource = resource_stream(__name__, f'archetypes/{kind}.json')
+        string = resource.read()
+        info = json.loads(string)
+        self.info = info
 
     def show_me_the_moves(self):
         pp(self.info["moves"], width=120)
         print(
             f"Chose 2 expert moves.\nEnter the number associated with each chosen move separately."
         )
-        valid_choices = [int(choice) for choice in list(self.info["moves"].keys())]
+        valid_choices = [int(choice) for choice in list(self.info["moves"].keys()) if choice != 'limit']
         for _ in range(int(self.info["moves"]["limit"])):
             while True:
                 choice = get_int_input("what move you'd like to chose")
@@ -298,7 +297,7 @@ class Character(object):
         print(
             f"Chose 3 options for your haven.\nEnter the number associated with each chosen option separately."
         )
-        valid_choices = [int(choice) for choice in list(self.info["haven"].keys())]
+        valid_choices = [int(choice) for choice in list(self.info["haven"].keys()) if choice != 'limit']
         for _ in range(int(self.info["haven"]["limit"])):
             while True:
                 choice = get_int_input("what option you would like to chose")
@@ -310,7 +309,7 @@ class Character(object):
         print(
             f"Chose 3 weapons.\nEnter the number associated with each chosen weapon separately."
         )
-        valid_choices = [int(choice) for choice in list(self.info["gear"].keys())]
+        valid_choices = [int(choice) for choice in list(self.info["gear"].keys()) if choice != 'limit']
         for _ in range(int(self.info["gear"]["limit"])):
             while True:
                 choice = get_int_input("what weapon you'd like to chose")
