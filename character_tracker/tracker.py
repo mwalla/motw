@@ -4,9 +4,6 @@ from pkg_resources import resource_stream, resource_exists, resource_filename
 from sys import exit
 from .utils import get_int_input
 
-character_file = resource_stream(__name__, 'characters/characters.pkl')
-character_file_name = resource_filename(__name__, 'characters/characters.pkl')
-
 
 class Tracker(object):
     """Tracker for multiple Monster of the Week game characters.
@@ -16,6 +13,8 @@ class Tracker(object):
 
     def __init__(self):
         self.characters = {}
+        self.character_file = resource_stream(__name__, 'characters/characters.pkl')
+        self.character_file_name = resource_filename(__name__, 'characters/characters.pkl')
         if resource_exists(__name__, 'characters/characters.pkl'):
             self.load_characters()
 
@@ -32,12 +31,12 @@ class Tracker(object):
                 print(f'"{choice}" is not a valid choice.')
 
     def save_characters(self):
-        with open(character_file_name, 'wb') as f:
+        with open(self.character_file_name, 'wb') as f:
             pickle.dump(self.characters, f)
 
     def load_characters(self):
         try:
-            self.characters = pickle.load(character_file)
+            self.characters = pickle.load(self.character_file)
             return 1
         except FileNotFoundError:
             print("You haven't created any characters yet.")
