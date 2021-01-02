@@ -1,6 +1,6 @@
 from pprint import pprint as pp
 from .character import Character
-from .utils import validate_option_choice, get_int_input
+from character_tracker.utils import validate_option_choice, get_int_input
 
 
 class Expert(Character):

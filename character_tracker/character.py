@@ -1,9 +1,7 @@
-import json
-from pkg_resources import resource_stream, resource_listdir
 from pprint import pprint as pp
-from .move_msg import basic_moves
-from .roller import Roller
-from .utils import get_int_input, get_str_input, validate_option_choice
+from character_tracker.basic_moves import basic_moves
+from character_tracker.roller import Roller
+from character_tracker.utils import get_int_input, get_str_input
 
 
 class Character(object):
