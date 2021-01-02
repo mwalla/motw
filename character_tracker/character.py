@@ -157,11 +157,12 @@ class Character(object):
             if move_key in self.moves:
                 title, _, description = self.info["moves"][str(move_key)].partition(":")
                 output[title] = description
-        haven_keys = [int(key) for key in self.info["keys"]["haven"][move]]
-        for haven_key in haven_keys:
-            if haven_key in self.haven:
-                title, _, description = self.info["haven"][str(haven_key)].partition(":")
-                output[title] = description
+        if self.info["keys"]["haven"]:
+            haven_keys = [int(key) for key in self.info["keys"]["haven"][move]]
+            for haven_key in haven_keys:
+                if haven_key in self.haven:
+                    title, _, description = self.info["haven"][str(haven_key)].partition(":")
+                    output[title] = description
         if not output:
             output = "You don't have any Expert moves or Haven options to help with this."
         return output
@@ -297,26 +298,35 @@ class Character(object):
         print(
             f"Chose 3 options for your haven.\nEnter the number associated with each chosen option separately."
         )
-        valid_choices = [int(choice) for choice in list(self.info["haven"].keys()) if choice != 'limit']
-        for _ in range(int(self.info["haven"]["limit"])):
-            while True:
-                choice = get_int_input("what option you would like to chose")
-                if not validate_option_choice(choice=choice, valid_choices=valid_choices, chosen=self.haven):
-                    break
+        if self.info['haven']:
+            valid_choices = [int(choice) for choice in list(self.info["haven"].keys()) if choice != 'limit']
+            for _ in range(int(self.info["haven"]["limit"])):
+                while True:
+                    choice = get_int_input("what option you would like to chose")
+                    if not validate_option_choice(choice=choice, valid_choices=valid_choices, chosen=self.haven):
+                        break
 
     def get_me_some_gear(self):
-        pp(self.info["gear"], width=120)
-        print(
-            f"Chose 3 weapons.\nEnter the number associated with each chosen weapon separately."
-        )
-        valid_choices = [int(choice) for choice in list(self.info["gear"].keys()) if choice != 'limit']
-        for _ in range(int(self.info["gear"]["limit"])):
-            while True:
-                choice = get_int_input("what weapon you'd like to chose")
-                if not validate_option_choice(choice=choice, valid_choices=valid_choices, chosen=self.gear):
-                    break
+        def gear_chooser(title, category):
+            limit = int(category["limit"])
+            pp(category, width=120)
+            print(
+                f"Chose {limit} {title}.\nEnter the number associated with each chosen {title} separately."
+            )
+            valid_choices = [int(choice) for choice in list(category.keys()) if choice != 'limit']
+            for _ in range(limit):
+                while True:
+                    choice = get_int_input(f"what {title} you'd like to chose")
+                    if not validate_option_choice(choice=choice, valid_choices=valid_choices, chosen=self.gear):
+                        break
+        if isinstance(self.info["gear"], dict):
+            for title, category in self.info["gear"].items():
+                gear_chooser(title, category)
+        else:
+            gear_chooser("weapon", self.info["gear"])
 
     def improve_me(self):
+        # TODO: Implement this.
         pass
 
     def remind_me(self):
@@ -332,12 +342,22 @@ class Character(object):
             name, _, description = self.info["haven"][str(have)].partition(":")
             output["haven"][name] = description
         for item in self.gear:
-            name, _, description = self.info["gear"][str(item)].partition(":")
-            output["gear"][name] = description
+            print(f'item {item}')
+            if isinstance(self.info['gear'], dict):
+                print('beep')
+                for category, gear in self.info['gear'].items():
+                    print(f'cat {category}, gear {str(item) in gear}')
+                    if str(item) in gear:
+                        name, _, description = self.info['gear'][category][str(item)].partition(":")
+                        output['gear'][name] = description
+            else:
+                name, _, description = self.info["gear"][str(item)].partition(":")
+                output["gear"][name] = description
         pp(output)
         pp({key: val for key, val in self.__dict__.items() if isinstance(val, int) or isinstance(val, str)}, depth=1)
 
     def level_up(self):
+        # TODO: Implement this.
         pass
 
     def set_skill_levels(self):
