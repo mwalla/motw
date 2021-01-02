@@ -30,7 +30,7 @@ class Game(object):
         return char_cd[choice]
 
     def create_character(self):
-        kind = self.what_am_i().lower()
+        kind = self.what_am_i()
         new = self.characters[kind]()
         new.info = load_resource(kind)
         name = get_str_input("your name")
@@ -45,14 +45,14 @@ class Game(object):
             if not self.tracker.load_characters():
                 self.create_character()
         char_cd = {
-            i: name.title() for i, name in enumerate(list(self.tracker.characters.keys()), 1)
+            i: name for i, name in enumerate(list(self.tracker.characters.keys()), 1)
         }
         pp(char_cd)
         pp(self.tracker.characters)
         while True:
             choice = get_int_input("character choice")
             if choice in list(char_cd.keys()):
-                self.character = self.tracker.characters[char_cd[choice].lower()]
+                self.character = self.tracker.characters[char_cd[choice]]
                 break
             else:
                 print(f'"{choice}" is not a valid choice.')
