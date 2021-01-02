@@ -1,7 +1,8 @@
-from .character import Character
+from .expert import Expert
+from .professional import Professional
 from .tracker import Tracker
 from pprint import pprint as pp
-from .utils import get_int_input, validate_function_choice
+from .utils import get_int_input, validate_function_choice, get_str_input, load_resource
 
 
 class Game(object):
@@ -12,11 +13,30 @@ class Game(object):
     def __init__(self):
         self.tracker = Tracker()
         self.character = None
+        self.characters = {"expert": Expert, "professional": Professional}
         self.options = None
         self.option_cd = None
 
+    def what_am_i(self):
+        print(f"\nWhich player type are you?\n")
+        while True:
+            kind = get_str_input("what player type you are.")
+            if kind in self.characters:
+                break
+            else:
+                print(
+                    f"Sorry, I don't know about {kind}.\n"
+                    f"The types of players I know about are {' '.join(list(self.characters.keys()))}.\n"
+                )
+        return kind
+
     def create_character(self):
-        new = Character()
+        name = get_str_input("name")
+        kind = self.what_am_i()
+        load_resource(kind)
+        new = self.characters[kind]()
+        new.name = name
+        new.type = kind
         new.character_setup()
         self.tracker.characters[new.name] = new
         self.tracker.save_characters()
