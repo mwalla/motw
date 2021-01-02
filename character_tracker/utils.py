@@ -1,3 +1,5 @@
+import json
+from pkg_resources import resource_stream
 from sys import exit
 
 
@@ -37,3 +39,10 @@ def validate_option_choice(choice, valid_choices, chosen):
     else:
         print(f'"{choice}" is not a valid choice.')
         return 1
+
+
+def load_resource(kind):
+    resource = resource_stream(__name__, f"archetypes/{kind}.json")
+    string = resource.read()
+    info = json.loads(string)
+    return info
