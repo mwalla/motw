@@ -47,6 +47,8 @@ class Tracker(object):
             return 1
         except FileNotFoundError:
             print("You haven't created any characters yet.")
+        except EOFError:
+            print("You haven't created any characters yet.")
 
     def quit(self):
         self.save_characters()
