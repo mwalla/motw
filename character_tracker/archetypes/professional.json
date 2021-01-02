@@ -1,0 +1,81 @@
+{
+  "moves": {
+    "1": "Bottle It Up: If you want, you can take up to +3 bonus when you act under pressure. For each +1 you use, the Keeper holds 1. That hold can be spent later—one for one—to give you -1 on any move except act under pressure.",
+    "2": "Unfazeable: Take +1 Cool (max +3).",
+    "3": "Battlefield Awareness: You always know what’s happening around you, and what to watch out for. Take +1 armour (max 2-armour) on top of whatever you get from your gear.",
+    "4": "Leave No One Behind: In combat, when you help someone escape, roll +Sharp. On a 10+ you get them out clean. On a 7-9, you can either get them out or suffer no harm, you choose. On a miss, you fail to get them out and you’ve attracted hostile attention.",
+    "5": "Tactical Genius: When you read a bad situation, you may roll +Cool instead of +Sharp",
+    "6": "Medic: You have a full first aid kit, and the training to heal people. When you do first aid, roll +Cool. On a 10+ the patient is stabilized and healed of 2 harm. On a 7-9 choose one: heal 2 harm or stabilize the injury. On a miss, you cause an extra 1 harm. This move takes the place of regular first aid.",
+    "7": "Mobility: You have a truck, van, or car built for monster hunting. Choose two good things and one bad thing about it. Good things: roomy; surveillance gear; fast; stealthy; intimidating; classic; medical kit; sleeping space; toolkit; concealed weapons; anonymous; armoured (+1 armour inside); tough; monster cage. Bad things: loud; obvious; temperamental; beaten-up; gas-guzzler; uncomfortable; slow; old.",
+    "8": "Default: When you deal with the Agency, requesting help or gear, or making excuses for a failure, roll +Sharp. On na 10+, you’re good—your request for gear or personnel is okayed, or your slip-up goes unnoticed. On a 7-9, things aren’t so great. You might get chewed out by your superiors and there’ll be fallout, but you get what you need for the job. On a miss, you screwed up: you might be suspended or under investigation, or just in the doghouse. You certainly aren’t going to get any help until you sort it all out.",
+    "limit": "3"
+  },
+  "haven": {
+
+  },
+  "gear": {
+    "armor": {
+      "1": "Flak vest: (1-armour hidden)",
+      "2": "Combat armour (2-armour heavy)",
+      "limit": "1"
+    },
+    "serious": {
+      "3": "Assault rifle: (3-harm far area loud reload)",
+      "4": "Grenade launcher: (4-harm far area messy loud reload)",
+      "5": "Sniper rifle: (4-harm far)",
+      "6": "Grenades: (4-harm close area messy loud)",
+      "7": "Submachine: gun (3-harm close area loud reload)",
+      "limit": "1"
+    },
+    "normal": {
+      "8": ".38 revolver: (2-harm close reload loud)",
+      "9": "9mm: (2-harm close loud)",
+      "10": "Hunting: rifle (2-harm far loud)",
+      "11": "Shotgun: (3-harm close messy)",
+      "12": "Big knife: (1-harm hand)",
+      "limit": "2"
+    }
+  },
+  "improvements": {
+    "1": "Get +1 Cool, max +3",
+    "2": "Get +1 Charm, max +2",
+    "3": "Get +1 Sharp, max +2",
+    "4": "Get +1 Tough, max +2",
+    "5": "Take another Professional move",
+    "6": "Take another Professional move",
+    "7": "Add a new resource tag for your Agency or change a red tape tag",
+    "8": "Get command of an Agency team of monster hunters",
+    "9": "Take a move from another playbook",
+    "10": "Take a move from another playbook"
+  },
+  "advanced_improvements": {
+    "1": "Get +1 to any rating, max +3.",
+    "2": "Change this hunter to a new type.",
+    "3": "Create a second hunter to play as well as this one.",
+    "4": "Mark two of the basic moves as advanced.",
+    "5": "Mark another two of the basic moves as advanced.",
+    "6": "Retire this hunter to safety",
+    "7": "Get some or all of the other players’ hunters hired by your agency. They get the deal with the agency move, as well as salary and benefits.",
+    "8": "Get back one used Luck point."
+  },
+  "luck": {
+    "1": "When you spend a point of Luck, your next mission from the Agency comes with lots of Red Tape.\nLots."
+  },
+  "keys": {
+    "moves": {
+      "act_under_pressure": ["1", "2", "3", "7", "8"],
+      "kick_some_ass": ["3"],
+      "help_out": ["4", "6", "8"],
+      "investigate": ["3", "7", "8"],
+      "protect": ["3", "6"],
+      "manipulate": ["8"],
+      "read_a_situation": ["3", "5", "7", "8"],
+      "magic": [],
+      "big_magic": [],
+      "recovery": ["6"]
+    },
+    "haven": {
+
+    }
+  }
+}
