@@ -13,7 +13,7 @@ class Game(object):
     def __init__(self):
         self.tracker = Tracker()
         self.character = None
-        self.characters = {"expert": Expert, "professional": Professional}
+        self.characters = {"Expert": Expert, "Professional": Professional}
         self.options = None
         self.option_cd = None
 
