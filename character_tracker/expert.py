@@ -1,5 +1,5 @@
 from pprint import pprint as pp
-from .character import Character
+from character_tracker.character import Character
 from character_tracker.utils import validate_option_choice, get_int_input
 
 
