@@ -1,5 +1,5 @@
-from .expert import Expert
-from .professional import Professional
+from character_tracker.expert import Expert
+from character_tracker.professional import Professional
 from .tracker import Tracker
 from pprint import pprint as pp
 from .utils import get_int_input, validate_function_choice, get_str_input, load_resource
@@ -18,23 +18,22 @@ class Game(object):
         self.option_cd = None
 
     def what_am_i(self):
-        print(f"\nWhich player type are you?\n")
+        char_cd = {i: name.title() for i, name in enumerate(self.characters.keys(), 1)}
+        print(f"\nWhich player type are you?")
+        pp(char_cd)
         while True:
-            kind = get_str_input("what player type you are.")
-            if kind in self.characters:
+            choice = get_int_input("character type")
+            if choice in char_cd:
                 break
             else:
-                print(
-                    f"Sorry, I don't know about {kind}.\n"
-                    f"The types of players I know about are {' '.join(list(self.characters.keys()))}.\n"
-                )
-        return kind
+                print(f'"{choice}" is not a valid choice.')
+        return char_cd[choice]
 
     def create_character(self):
-        name = get_str_input("name")
-        kind = self.what_am_i()
-        load_resource(kind)
+        kind = self.what_am_i().lower()
         new = self.characters[kind]()
+        new.info = load_resource(kind)
+        name = get_str_input("your name")
         new.name = name
         new.type = kind
         new.character_setup()
@@ -46,13 +45,14 @@ class Game(object):
             if not self.tracker.load_characters():
                 self.create_character()
         char_cd = {
-            i: name for i, name in enumerate(list(self.tracker.characters.keys()), 1)
+            i: name.title() for i, name in enumerate(list(self.tracker.characters.keys()), 1)
         }
         pp(char_cd)
+        pp(self.tracker.characters)
         while True:
             choice = get_int_input("character choice")
             if choice in list(char_cd.keys()):
-                self.character = self.tracker.characters[char_cd[choice]]
+                self.character = self.tracker.characters[char_cd[choice].lower()]
                 break
             else:
                 print(f'"{choice}" is not a valid choice.')
