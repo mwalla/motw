@@ -13,11 +13,14 @@ class Tracker(object):
 
     def __init__(self):
         self.characters = {}
-        self.character_file = resource_stream(__name__, "characters/characters.pkl")
+        try:
+            self.character_file = resource_stream(__name__, "pickle/characters.pkl")
+        except FileNotFoundError:
+            self.character_file = None
         self.character_file_name = resource_filename(
-            __name__, "characters/characters.pkl"
+            __name__, "pickle/characters.pkl"
         )
-        if resource_exists(__name__, "characters/characters.pkl"):
+        if resource_exists(__name__, "pickle/characters.pkl"):
             self.load_characters()
 
     def chose_character(self):
@@ -37,6 +40,8 @@ class Tracker(object):
             pickle.dump(self.characters, f)
 
     def load_characters(self):
+        if not self.character_file:
+            return
         try:
             self.characters = pickle.load(self.character_file)
             return 1
