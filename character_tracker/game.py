@@ -48,7 +48,6 @@ class Game(object):
             i: name for i, name in enumerate(list(self.tracker.characters.keys()), 1)
         }
         pp(char_cd)
-        pp(self.tracker.characters)
         while True:
             choice = get_int_input("character choice")
             if choice in list(char_cd.keys()):
