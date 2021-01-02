@@ -21,20 +21,20 @@ class Roller:
         total = sum(self.result) + self.skill_adjustment
         if total < 7:
             phrase = random.sample(bad, 2)
-            self.phrase = (', '.join(phrase) + '!').capitalize()
+            self.phrase = (", ".join(phrase) + "!").capitalize()
             return
         elif 7 <= total < 10:
             phrase = random.sample(okay, 2)
-            self.phrase = (', '.join(phrase) + '.').capitalize()
+            self.phrase = (", ".join(phrase) + ".").capitalize()
             return
         else:
             phrase = random.sample(good, 2)
-            self.phrase = (', '.join(phrase) + '!').capitalize()
+            self.phrase = (", ".join(phrase) + "!").capitalize()
             return
 
     def get_result_string(self):
         adj_str = " +" if self.skill_adjustment >= 0 else " "
-        self.output += '--'.join(["\u2304"] * 10)
+        self.output += "--".join(["\u2304"] * 10)
         self.output += f"""
 Roll: {', '.join([str(x) for x in self.result])}
 Total: {sum(self.result)}
@@ -43,7 +43,7 @@ Total: {sum(self.result)}
 Final: {sum(self.result) + self.skill_adjustment}
 {self.phrase}
 """
-        self.output += '--'.join(["^"] * 10)
+        self.output += "--".join(["^"] * 10)
 
     def main(self):
         self.roll()

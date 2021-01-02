@@ -13,9 +13,11 @@ class Tracker(object):
 
     def __init__(self):
         self.characters = {}
-        self.character_file = resource_stream(__name__, 'characters/characters.pkl')
-        self.character_file_name = resource_filename(__name__, 'characters/characters.pkl')
-        if resource_exists(__name__, 'characters/characters.pkl'):
+        self.character_file = resource_stream(__name__, "characters/characters.pkl")
+        self.character_file_name = resource_filename(
+            __name__, "characters/characters.pkl"
+        )
+        if resource_exists(__name__, "characters/characters.pkl"):
             self.load_characters()
 
     def chose_character(self):
@@ -31,7 +33,7 @@ class Tracker(object):
                 print(f'"{choice}" is not a valid choice.')
 
     def save_characters(self):
-        with open(self.character_file_name, 'wb') as f:
+        with open(self.character_file_name, "wb") as f:
             pickle.dump(self.characters, f)
 
     def load_characters(self):
