@@ -1,8 +1,6 @@
 import pickle
-from pprint import pprint as pp
 from pkg_resources import resource_stream, resource_exists, resource_filename
 from sys import exit
-from .utils import get_int_input
 
 
 class Tracker(object):
@@ -22,18 +20,6 @@ class Tracker(object):
         )
         if resource_exists(__name__, "pickle/characters.pkl"):
             self.load_characters()
-
-    def chose_character(self):
-        char_cd = {i: name for i, name in enumerate(list(self.characters.keys()), 1)}
-        print()
-        print("Your characters:")
-        pp(char_cd)
-        while True:
-            choice = get_int_input("character choice")
-            if choice in list(char_cd.keys()):
-                return self.characters[char_cd[choice]]
-            else:
-                print(f'"{choice}" is not a valid choice.')
 
     def save_characters(self):
         with open(self.character_file_name, "wb") as f:
