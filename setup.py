@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 setuptools.setup(
     name='character_tracker',
-    version='0.16',
+    version='0.17',
     packages=setuptools.find_packages(),
     url='https://github.com/llpk79/motw',
     license='MIT',
