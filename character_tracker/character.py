@@ -166,7 +166,7 @@ class Character(object):
             )
         return output
 
-    def make_a_move(self, move: str, skill: str, skill_level: int):
+    def make_a_move(self, move: str, skill: str, skill_level: int) -> (str, str, dict):
         result, roller_output = self.roller(skill, skill_level).main()
         msg_output = self.get_move_info(result, move)
         help_output = self.show_helpful_stuff(move)
