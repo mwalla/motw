@@ -26,7 +26,7 @@
             "11": "Rich",
             "12": "Nifty gadgets",
             "13": "Magical items",
-            "pick": "2"
+            "limit": "2"
         },
         "bad": {
             "1": "Dubious motives",
@@ -42,15 +42,15 @@
             "11": "Obsolete gear",
             "12": "Poor",
             "13": "",
-            "pick": "1"
+            "limit": "1"
         },
     },
     "gear": {    
         "old_fashioned": {
             "1": "Sword (2-harm hand messy)",
             "2": "Axe (2-harm hand messy)",
-            "3": "Big sword (3-harm hand messy heavy",
-            "4": "Big axe (3-harm hand messy slow heavy",
+            "3": "Big sword (3-harm hand messy heavy)",
+            "4": "Big axe (3-harm hand messy slow heavy)",
             "5": "Silver knive (1-harm hand silver)",
             "6": "Fighting sticks (1-harm hand quick)",
             "7": "Spear (2-harm hand close)",
@@ -63,7 +63,7 @@
             "2": "9mm: (2-harm close loud)",
             "3": "Sniper rifle (3-harm far)",
             "4": "Magnum (3-harm close reload loud)",
-            "5": "Shotgun (3-harm close messy",
+            "5": "Shotgun (3-harm close messy)",
             "limit": "2"
         },
     },
@@ -93,6 +93,16 @@
     },
     "keys": {
         "moves": {
+            "act_under_pressure": ["1", "2", "3", "7", "8"],
+            "kick_some_ass": [],
+            "help_out": ["8"],
+            "investigate": ["9"],
+            "protect": ["2"],
+            "manipulate": [],
+            "read_a_situation": [],
+            "magic": ["3","9"],
+            "big_magic": [],
+            "recovery": []
         },
         "haven": {          
         }
