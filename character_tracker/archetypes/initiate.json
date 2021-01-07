@@ -41,7 +41,6 @@
             "10": "Tyrannical leaders",
             "11": "Obsolete gear",
             "12": "Poor",
-            "13": "",
             "limit": "1"
         },
     },
@@ -93,7 +92,7 @@
     },
     "keys": {
         "moves": {
-            "act_under_pressure": ["1", "2", "3", "7", "8"],
+            "act_under_pressure": [],
             "kick_some_ass": [],
             "help_out": ["8"],
             "investigate": ["9"],
